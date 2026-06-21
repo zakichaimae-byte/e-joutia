@@ -326,7 +326,7 @@ Configurées via le plugin `expo-image-picker` dans `app.json` :
 
 ---
 
-**e-joutia** — Développé avec ❤️ par **Chaimae ZAKI** & **Alae JAAOUANI**
+**e-joutia** — Développé  par **Chaimae ZAKI** & **Alae JAAOUANI**
 
 [![Made with React Native](https://img.shields.io/badge/Made_with-React_Native-61DAFB?style=flat-square&logo=react)](https://reactnative.dev)
 [![Powered by Expo](https://img.shields.io/badge/Powered_by-Expo-000020?style=flat-square&logo=expo)](https://expo.dev)
