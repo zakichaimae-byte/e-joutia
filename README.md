@@ -8,24 +8,59 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9.2-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Formik](https://img.shields.io/badge/Formik-2.4.6-2496ED?style=for-the-badge)](https://formik.org)
 
-> **Projet de Développement Mobile**
+> **Projet 4 — Développement Mobile**
+> Formulaire de Publication d'Annonce (Création)
 > Réalisé par **Chaimae ZAKI** & **Alae JAAOUANI**
 
 ---
 
 ## 📋 Table des matières
 
-1. [Présentation du projet](#-présentation-du-projet)
-2. [Fonctionnalités](#-fonctionnalités)
-3. [Architecture du projet](#️-architecture-du-projet)
-4. [Modélisation](#-modélisation)
-5. [Design System](#-design-system)
-6. [Technologies & dépendances](#-technologies--dépendances)
-7. [Statistiques du projet](#-statistiques-du-projet)
-8. [Installation & lancement](#-installation--lancement)
-9. [Validation des formulaires](#-validation-des-formulaires)
-10. [Permissions natives](#-permissions-natives)
-11. [Équipe](#-équipe)
+1. [Cahier des charges](#-cahier-des-charges)
+2. [Présentation du projet](#-présentation-du-projet)
+3. [Fonctionnalités](#-fonctionnalités)
+4. [Architecture du projet](#️-architecture-du-projet)
+5. [Modélisation](#-modélisation)
+6. [Design System](#-design-system)
+7. [Technologies & dépendances](#-technologies--dépendances)
+8. [Statistiques du projet](#-statistiques-du-projet)
+9. [Installation & lancement](#-installation--lancement)
+10. [Validation des formulaires](#-validation-des-formulaires)
+11. [Permissions natives](#-permissions-natives)
+12. [Équipe](#-équipe)
+
+---
+
+## 📜 Cahier des charges
+
+### Objectif du projet
+
+Développer le tunnel de mise en vente d'un produit en combinant la saisie de données textuelles et la manipulation de fichiers multimédias natifs.
+
+### Spécifications fonctionnelles — Livrables UX/UI
+
+| Exigence | Statut | Implémentation |
+| --- | --- | --- |
+| Bouton ouvrant caméra **ou** galerie | ✅ | Modal de choix dans `ImagePicker.tsx` (`handleLaunchCamera` / `handleLaunchLibrary`) |
+| Ajout jusqu'à **5 photos** | ✅ | Compteur `images.length < 5`, sélection multiple limitée (`selectionLimit: 5 - images.length`) |
+| Affichage des miniatures | ✅ | `ScrollView` horizontal de thumbnails avec badge "Principale" sur la 1ère photo |
+| Suppression d'une photo ajoutée par erreur | ✅ | `handleRemovePhoto(index)` — bouton ✕ sur chaque miniature |
+| Champ **Title** (max 50 caractères) | ✅ | `Input` + `maxLength={50}` + règle Yup `.max(50)` |
+| Champ **Description** détaillée | ✅ | `Input multiline` + règle Yup `.min(10)` |
+| Champ **Prix** | ✅ | `Input keyboardType="numeric"` + règle Yup `.min(0.01).max(99999.99)` |
+| Champ **Catégorie** (menu déroulant) | ✅ | `CategoryPicker` — modal liste type bottom-sheet |
+| Champ **État de l'objet** | ✅ | `CategoryPicker` (Neuf, Comme neuf, Bon état, Correct) |
+| Bouton **"Publier"** | ✅ | `Button` avec `onPress={handleSubmit}` (Formik) |
+| Animation de chargement à la soumission | ✅ | `Modal` + `ActivityIndicator` ("Publication en cours...") |
+| Écran de succès confirmant la mise en ligne | ✅ | `SuccessScreen` — récapitulatif + actions |
+
+### Contraintes techniques & architecture
+
+| Contrainte | Statut | Implémentation |
+| --- | --- | --- |
+| Accès caméra/galerie via `expo-image-picker` | ✅ | `expo-image-picker@~17.0.11`, permissions demandées dynamiquement |
+| Gestion correcte des URIs locales | ✅ | URIs stockées en `state` (`images: string[]`), passées entre écrans via les paramètres de navigation typés |
+| Structuration en `FormData` (texte + fichiers binaires) | ✅ | `PublishAdScreen.handleSubmit` — champs texte `append()` + photos `append('photos', { uri, name, type })` |
 
 ---
 
